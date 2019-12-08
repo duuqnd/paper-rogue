@@ -93,10 +93,15 @@
   (decf (x-pos *player*))
   (update-game-state))
 
-(define-paper-rogue-command (com-debug-randomize-map :name t) ()
+(define-paper-rogue-command (com-debug-generate-map :name t) ()
   (dotimes (y +map-height+)
     (dotimes (x +map-width+)
-      (setf (aref *map* y x) (game-rand 2)))))
+      (setf (aref *map* y x) (game-rand 2))))
+  (setf *map* (smooth-map (smooth-map *map*))))
+
+(define-paper-rogue-command (com-debug-set-player-position :name t) ((x 'number) (y 'number))
+  (setf (x-pos *player*) x
+        (y-pos *player*) y))
 
 (define-paper-rogue-command (com-debug-toggle-square :name t) ((x 'number) (y 'number))
   (setf (aref *map* y x) (if (zerop (aref *map* y x)) 1 0)))
