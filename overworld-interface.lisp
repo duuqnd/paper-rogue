@@ -13,6 +13,7 @@
 (defparameter *player* (make-instance 'player :name "Unnamed Cave Explorer"))
 (defparameter *map* (make-array (list +map-height+ +map-width+)
                                 :element-type 'unsigned-byte :adjustable nil))
+(defparameter *active-entities* (list *player*))
 
 (defclass scrollbar-preserving-mixin () ())
 (defclass map-screen (scrollbar-preserving-mixin application-pane) ())
@@ -61,8 +62,8 @@
   (dotimes (y +map-height+)
     (dotimes (x +map-width+)
       (draw-rectangle* pane (* x 8) (* y 8) (+ 8 (* x 8)) (+ 8 (* y 8))
-                       :ink (if (zerop (aref *map* y x)) +white+ +black+)))
-    (terpri pane)))
+                       :ink (if (zerop (aref *map* y x)) +white+ +black+))))
+  (mapc (lambda (entity) (draw-entity entity pane)) *active-entities*))
 
 (defun display-status-screen (frame pane)
   (declare (ignore frame))

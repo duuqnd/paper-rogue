@@ -7,10 +7,22 @@
 
 ;; Overworld exploration
 
+(defgeneric draw-entity (entity pane))
+
 (defclass entity ()
   ((status :accessor status :initform :alive)
    (x-position :accessor x-pos :initform 0)
    (y-position :accessor y-pos :initform 0)))
+
+(defmethod draw-entity ((entity entity) pane)
+  nil)
+
+(defclass drawable-entity (entity)
+  ((color :accessor color :initform +red+)))
+
+(defmethod draw-entity ((entity drawable-entity) pane)
+  (let ((x (* 8 (x-pos entity))) (y (* 8 (y-pos entity))))
+    (draw-rectangle* pane x y (+ x 8) (+ y 8) :ink (color entity))))
 
 (defconstant +starting-hp+ 10)
 (defconstant +starting-fp+ 5)
@@ -18,8 +30,9 @@
 (defparameter *player-start-attacks*
   (list prcombat:*attack-jump* prcombat:*attack-hammer-smash*))
 
-(defclass player (entity)
-  ((name :accessor name :initarg :name)
+(defclass player (drawable-entity)
+  ((color :accessor color :initform +green+)
+   (name :accessor name :initarg :name)
    (combat-player :accessor combat-player)
    (max-hp :accessor max-hp :initform +starting-hp+)
    (max-fp :accessor max-fp :initform +starting-fp+)
