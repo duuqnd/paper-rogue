@@ -77,19 +77,19 @@
 
 ;; Player movement commands
 
-(define-paper-rogue-command (com-move-up :name t) ()
+(define-paper-rogue-command (com-move-up :name t :keystroke (#\w :meta)) ()
   (decf (y-pos *player*))
   (update-game-state))
 
-(define-paper-rogue-command (com-move-down :name t) ()
+(define-paper-rogue-command (com-move-down :name t :keystroke (#\s :meta)) ()
   (incf (y-pos *player*))
   (update-game-state))
 
-(define-paper-rogue-command (com-move-right :name t) ()
+(define-paper-rogue-command (com-move-right :name t :keystroke (#\d :meta)) ()
   (incf (x-pos *player*))
   (update-game-state))
 
-(define-paper-rogue-command (com-move-left :name t) ()
+(define-paper-rogue-command (com-move-left :name t :keystroke (#\a :meta)) ()
   (decf (x-pos *player*))
   (update-game-state))
 
