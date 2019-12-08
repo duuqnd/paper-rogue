@@ -73,6 +73,26 @@
   (format pane "Attack power: ~d~%" (attack-power *player*))
   (format pane "Level: ~2d~%" (level *player*)))
 
+(defun update-game-state ())
+
+;; Player movement commands
+
+(define-paper-rogue-command (com-move-up :name t) ()
+  (decf (y-pos *player*))
+  (update-game-state))
+
+(define-paper-rogue-command (com-move-down :name t) ()
+  (incf (y-pos *player*))
+  (update-game-state))
+
+(define-paper-rogue-command (com-move-right :name t) ()
+  (incf (x-pos *player*))
+  (update-game-state))
+
+(define-paper-rogue-command (com-move-left :name t) ()
+  (decf (x-pos *player*))
+  (update-game-state))
+
 (define-paper-rogue-command (com-debug-randomize-map :name t) ()
   (dotimes (y +map-height+)
     (dotimes (x +map-width+)
