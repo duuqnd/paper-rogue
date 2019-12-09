@@ -78,20 +78,28 @@
 ;; Player movement commands
 
 (define-paper-rogue-command (com-move-up :name t :keystroke (#\w :meta)) ()
-  (decf (y-pos *player*))
-  (update-game-state))
+  (if (zerop (map-peek *map* (x-pos *player*) (1- (y-pos *player*))))
+      (progn
+        (decf (y-pos *player*))
+        (update-game-state))))
 
 (define-paper-rogue-command (com-move-down :name t :keystroke (#\s :meta)) ()
-  (incf (y-pos *player*))
-  (update-game-state))
+  (if (zerop (map-peek *map* (x-pos *player*) (1+ (y-pos *player*))))
+      (progn
+        (incf (y-pos *player*))
+        (update-game-state))))
 
 (define-paper-rogue-command (com-move-right :name t :keystroke (#\d :meta)) ()
-  (incf (x-pos *player*))
-  (update-game-state))
+  (if (zerop (map-peek *map* (1+ (x-pos *player*)) (y-pos *player*)))
+      (progn
+        (incf (x-pos *player*))
+        (update-game-state))))
 
 (define-paper-rogue-command (com-move-left :name t :keystroke (#\a :meta)) ()
-  (decf (x-pos *player*))
-  (update-game-state))
+  (if (zerop (map-peek *map* (1- (x-pos *player*)) (y-pos *player*)))
+      (progn
+        (decf (x-pos *player*))
+        (update-game-state))))
 
 (define-paper-rogue-command (com-debug-generate-map :name t) ()
   (dotimes (y +map-height+)

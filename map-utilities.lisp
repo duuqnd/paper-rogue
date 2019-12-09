@@ -30,8 +30,8 @@
 
 (defun map-peek (map x y)
   (cond
-    ((>= x +map-width+) 0)
-    ((< x 0) 0)
-    ((>= y +map-height+) 0)
-    ((< y 0) 0)
+    ((>= x +map-width+) 1)
+    ((< x 0) 1)
+    ((>= y +map-height+) 1)
+    ((< y 0) 1)
     (t (aref map y x))))
