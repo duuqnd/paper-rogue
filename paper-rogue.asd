@@ -18,5 +18,6 @@
                (:file "attacks")
                (:file "combat")
 
+               (:file "map-utilities")
                (:file "overworld")
                (:file "overworld-interface")))

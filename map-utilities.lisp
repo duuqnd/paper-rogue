@@ -1,4 +1,4 @@
-;;;; overworld-interface.lisp
+;;;; map-utilities.lisp
 ;;
 ;;;; Copyright (c) 2019 John Lorentzson (Duuqnd)
 
