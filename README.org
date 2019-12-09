@@ -1,12 +1,7 @@
 * Paper-Rogue  - A roguelike game inspired by Paper Mario
 
-** Usage
-
-** Installation
-
-** Author
-
-+ John Lorentzson (Duuqnd)
+This project is nowhere near finished. I'm currently working on another project,
+so there is little to no development going on right now.
 
 ** Copyright
 
