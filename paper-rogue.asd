@@ -6,7 +6,7 @@
 (asdf:defsystem #:paper-rogue
   :description "A Roguelike for CLIM inspired by Paper Mario"
   :author "John Lorentzson (Duuqnd)"
-  :license  "Project is currently private, so no license has been added!"
+  :license  "GNU GPL v2 or later"
   :version "0.0.1"
   :serial t
   :depends-on (:mcclim)
